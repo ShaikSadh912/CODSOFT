@@ -1,0 +1,42 @@
+CHATBOT WITH RULE-BASED RESPONSES
+
+def AIchatbot():
+    print("AI Chatbot: Hi! I am your friendly AI  assistant. Ask me anything!.Type 'bye' to exit.")
+    
+    while True:
+        user_input = input("Me: ")
+
+        if "hello" in user_input or "hi" in user_input:
+            print("AI Chatbot: Hi there! How can I help you?")
+        
+        elif "how are you" in user_input:
+            print("AI Chatbot: I'm doing fine! How about you?")
+        
+        elif "what is your name" in user_input:
+            print("AI Chatbot: I am a chatbot I dont have a paticular name.")
+        
+        elif "Are you human?" in user_input or "are you a human?" in user_input : 
+            print("AI Chatbot: Nope, I'm not human — I'm an AI here to help you!")
+        
+        elif "tell me a joke" in user_input :
+            print("AI Chatbot: Why did the math book look sad? Because it had too many problems!")
+            
+        elif "tips to improve focus" in user_input :
+            print("AI Chatbot: Break tasks into smaller steps and tackle them one at a time to stay focused.Minimize distractions by creating a quiet, organized workspace and setting clear goals.")
+        
+        elif "how to learn programming?" in user_input :
+            print("AI Chatbot: Start with learning the basics of a programming language like Python.Practice by building small projects and solving problems to improve your skills over time.")
+            
+        elif "do you like pizza?" in user_input : 
+            print("AI Chatbot: I dont eat, but I have heard pizza is a slice of heaven! If I could try it, I would probably love it—especially with extra data on top! ")
+            
+        elif "what is your favourite color?" in user_input : 
+            print("AI Chatbot: My favorite color is  Mint Green — it's fresh and calming")
+        
+        elif "bye" in user_input:
+            print("AI Chatbot: Goodbye! Have a great day!.")
+            break
+        
+        else:
+            print("AI Chatbot : Sorry, I didn't understand that please ask any other queries.")
+AIchatbot()
