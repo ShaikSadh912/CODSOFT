@@ -1,0 +1,94 @@
+TIC-TAC-TOE AI
+
+
+import math
+def print_board(board):
+    for row in [board[i:i+3] for i in range(0, 9, 3)]:
+        print(" | ".join(row))
+    print()
+
+def check_winner(board, player):
+    win_positions = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+    ]
+    return any(all(board[pos] == player for pos in line) for line in win_positions)
+
+def minimax(board, depth, is_max):
+    if check_winner(board, "O"): return 1
+    if check_winner(board, "X"): return -1
+    if " " not in board: return 0
+
+    if is_max:
+        best = -math.inf
+        for i in range(9):
+            if board[i] == " ":
+                board[i] = "O"
+                score = minimax(board, depth + 1, False)
+                board[i] = " "
+                best = max(best, score)
+        return best
+    else:
+        best = math.inf
+        for i in range(9):
+            if board[i] == " ":
+                board[i] = "X"
+                score = minimax(board, depth + 1, True)
+                board[i] = " "
+                best = min(best, score)
+        return best
+
+def best_move(board):
+    best_score = -math.inf
+    move = -1
+    for i in range(9):
+        if board[i] == " ":
+            board[i] = "O"
+            score = minimax(board, 0, False)
+            board[i] = " "
+            if score > best_score:
+                best_score = score
+                move = i
+    return move
+
+def play_game():
+    board = [" "] * 9
+    print("\t\t\t\t\tTic-Tac-Toe AI — The Unbeatable Agent\n\n")
+    print(" Welcome to Tic-Tac-Toe: You (X) vs AI (O)\n")
+    print_board(board)
+
+    while True:
+        try:
+            move = int(input(" Your move (0-8): "))
+            if board[move] != " ":
+                print(" Spot taken! Try again.")
+                continue
+        except:
+            print(" Invalid input! Enter a number between 0-8.")
+            continue
+
+        board[move] = "X"
+
+        if check_winner(board, "X"):
+            print_board(board)
+            print(" You win!")
+            break
+        if " " not in board:
+            print_board(board)
+            print(" It's a draw!")
+            break
+
+        ai = best_move(board)
+        board[ai] = "O"
+        print(" AI plays:")
+        print_board(board)
+
+        if check_winner(board, "O"):
+            print(" AI wins!")
+            break
+        if " " not in board:
+            print(" It's a draw!")
+            break
+
+play_game()
